@@ -4,8 +4,8 @@
  * 分小数位，整数位集合计算
  * 组装得到最终结果
  */
-//  const CHARS = '0123456789abcdef';
-const CHARS = '0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ-~'
+ const CHARS = '0123456789abcdef';
+// const CHARS = '0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ-~'
 const DECIMAL_LENG = 12;
 function tenTransform(number, chars = CHARS) {
     if(number === 0 ) {
@@ -44,5 +44,5 @@ function decimalTransform(digit, chars) {
     return result;
 }
 
-// const result = tenTransform(1.1)
-// console.log(result);git remote add 
+const result = tenTransform(0)
+console.log(result);

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        #app {
+            padding: 20px;
+        }
+        .output {
+            width: 500px;
+            height: 500px;
+            padding: 5px;
+            border: 1px solid #f5f5f5;
+            background-color: #eee;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 28px;
+            overflow-y: auto;
+            cursor: pointer;
+        }
+        .btn {
+            width: 100px;
+            height: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="output">
+            <p v-for="item in outList">{{item.value}}</p>
+        </div>
+        <div>
+            <button 
+                v-for="(value, key) in obj"
+                class="btn"
+                @click="onClick(key, value)"
+            >
+                {{value}}
+            </button>
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios@1.4.0/dist/axios.min.js"></script>
+    <script type="module">
+        import { createApp, ref, reactive } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+        createApp({
+            setup() {
+                let obj = reactive({
+                    'shitou': '石头',
+                    'jiandao': '剪刀',
+                    'bu': '布',
+                    'err': '异常输入'
+                })
+                let outList = reactive([])
+                let onClick = (key, value) => {
+                    axios.get(`http://${location.host}/game?action=${key}`)
+                        .then(res => {
+                            const data = res.data
+                            let msg = data.data;
+                            if (data.code === 0) {
+                                const msgMap = new Map([
+                                    [-1, '你输了'],
+                                    [0, '平局'],
+                                    [1, '你赢了']
+                                ])
+                                msg = value + ':' +msgMap.get(data.data) || ''
+                            }
+                            outList.push({
+                                key,
+                                value : msg
+                            })
+                        })
+                }
+
+                return { obj, outList, onClick }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

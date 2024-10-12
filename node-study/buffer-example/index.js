@@ -1,0 +1,8 @@
+const buffer1 = Buffer.from('hello world')
+const buffer2 = Buffer.from([1,2,3,4])
+const buffer4 = Buffer.alloc(20)
+// buffer2.writeInt8(12, 1)
+buffer2.writeInt16LE(512, 2)
+console.log(buffer1)
+console.log(buffer2, buffer2.length)
+console.log(buffer3, buffer3.length)

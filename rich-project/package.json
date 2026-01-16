@@ -13,7 +13,18 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.30.6",
+    "@tencentcloud/chat": "^3.4.6",
+    "@tiptap/extension-document": "^2.8.0",
+    "@tiptap/extension-heading": "^2.8.0",
+    "@tiptap/extension-paragraph": "^2.8.0",
+    "@tiptap/extension-text": "^2.8.0",
+    "@tiptap/pm": "^2.8.0",
+    "@tiptap/starter-kit": "^2.8.0",
+    "@tiptap/vue-3": "^2.8.0",
+    "express": "^4.21.1",
     "pinia": "^2.2.4",
+    "quill": "^2.0.2",
     "vue": "^3.5.11",
     "vue-router": "^4.4.5"
   },
